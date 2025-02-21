@@ -2,6 +2,6 @@
 set -e
 
 # Ensure dependencies are installed
-composer install --no-dev --optimize-autoloader
+composer install --optimize-autoloader
 
 exec "$@"
