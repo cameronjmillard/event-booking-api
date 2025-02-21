@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AttendeeController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+/**
+ * Attendee Routes
+ */
+Route::resource('attendees', AttendeeController::class)->except(['create', 'edit']);
+
+Route::resource('events', EventController::class)->except(['create', 'edit']);
+Route::post('events/{event}/book', [EventController::class, 'bookEvent']);
+
+
+Route::resource('bookings', BookingController::class)->except(['create', 'edit']);
